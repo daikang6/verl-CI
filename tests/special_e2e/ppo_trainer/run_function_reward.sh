@@ -167,7 +167,7 @@ python3 -m verl.trainer.main_ppo \
     trainer.total_epochs=2 \
     trainer.device=cuda \
     trainer.total_training_steps="${TOTAL_TRAIN_STEPS}" $@ \
-    "${extra_flash_args[@]}" \
+    "${extra_npu_args[@]}" \
     | tee "${output_file}"
 
 if [ "${CUSTOM_REWARD_FN}" = "True" ]; then
