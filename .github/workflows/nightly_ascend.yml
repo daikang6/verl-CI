@@ -39,6 +39,7 @@ on:
   schedule:
     - cron: "0 17 * * *"
     - cron: "0 18 * * *"
+    - cron: "0 19 * * *"
 
 # Declare permissions just read content.
 permissions:
@@ -552,7 +553,7 @@ jobs:
   
   # Test grpo qwen3-30b veomni fsdp
   nightlyCI_grpo-qwen3-30b-veomni-fsdp_ascend:
-    if: github.repository_owner == 'verl-project'
+    if: ${{ github.repository_owner == 'verl-project' && github.event.schedule == '0 19 * * *' }}
     runs-on: linux-aarch64-a3-16
     timeout-minutes: 180 # Increase this timeout value as needed
     container:
