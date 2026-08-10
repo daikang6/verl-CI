@@ -262,7 +262,7 @@ jobs:
       - name: Running nightlyCI_dapo-moonlight-16b-megatron-vllm_ascend checking script
         run: |
           cd /root/.cache/nightly_log/
-          python check_npu.py --log run_dapo_moonlight-16b_megatron_npu/run_dapo_moonlight-16b_megatron_npu.log --base run_dapo_moonlight-16b_megatron_npu/baseline_run_dapo_moonlight-16b_megatron_npu.txt
+          python check_npu.py --log run_dapo_moonlight-16b_megatron_npu/run_dapo_moonlight-16b_megatron_npu.log --base run_dapo_moonlight-16b_megatron_npu/baseline_dapo_moonlight-16b_megatron_npu.txt
 
 
   # Test gspo qwen3-30b megatron vllm
