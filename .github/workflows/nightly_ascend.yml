@@ -364,7 +364,7 @@ jobs:
       - name: Running nightlyCI_gspo-qwen3-30b-megatron-vllm_ascend checking script
         run: |
           cd /root/.cache/nightly_log/
-          python check_npu.py --log run_grpo_qwen3_30b_megatron_sglang_npu/run_grpo_qwen3_30b_megatron_sglang_npu.log --base run_grpo_qwen3_30b_megatron_sglang_npu/baseline_run_grpo_qwen3_30b_megatron_sglang_npu.txt
+          python check_npu.py --log run_grpo_qwen3_30b_megatron_sglang_npu/run_grpo_qwen3_30b_megatron_sglang_npu.log --base run_grpo_qwen3_30b_megatron_sglang_npu/baseline_grpo_qwen3_30b_megatron_sglang_npu.txt
   
     # Test grpo qwen3_5_2b fsdp2 vllm
   nightlyCI_grpo_qwen3_5_2b_fsdp2_vllm_ascend:
