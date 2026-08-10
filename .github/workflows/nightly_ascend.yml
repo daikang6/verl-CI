@@ -259,6 +259,11 @@ jobs:
           cd ..
           export HCCL_OP_EXPANSION_MODE="AIV"
           bash tests/special_npu/nightly_ci_ascend/run_dapo_moonlight-16b_megatron_npu.sh
+      - name: Running nightlyCI_dapo-moonlight-16b-megatron-vllm_ascend checking script
+        run: |
+          cd /root/.cache/nightly_log/
+          python check_npu.py --log run_dapo_moonlight-16b_megatron_npu/run_dapo_moonlight-16b_megatron_npu.log --base run_dapo_moonlight-16b_megatron_npu/baseline_run_dapo_moonlight-16b_megatron_npu.txt
+
 
   # Test gspo qwen3-30b megatron vllm
   nightlyCI_gspo-qwen3-30b-megatron-vllm_ascend:
@@ -356,6 +361,10 @@ jobs:
         run: |
           ray stop --force
           bash tests/special_npu/nightly_ci_ascend/run_grpo_qwen3_30b_megatron_sglang_npu.sh
+      - name: Running nightlyCI_gspo-qwen3-30b-megatron-vllm_ascend checking script
+        run: |
+          cd /root/.cache/nightly_log/
+          python check_npu.py --log run_grpo_qwen3_30b_megatron_sglang_npu/run_grpo_qwen3_30b_megatron_sglang_npu.log --base run_grpo_qwen3_30b_megatron_sglang_npu/baseline_run_grpo_qwen3_30b_megatron_sglang_npu.txt
   
     # Test grpo qwen3_5_2b fsdp2 vllm
   nightlyCI_grpo_qwen3_5_2b_fsdp2_vllm_ascend:
@@ -384,11 +393,7 @@ jobs:
           clean: true
       - name: Install the current repository
         run: |
-<<<<<<< HEAD
-          pip install -r requirements-npu.txt && pip install -v -e .
-=======
           pip install -v -e .
->>>>>>> 8a1bf6d5b080173e29834aca55ee8d47549b2ea6
       - name: Check final pip list
         run: |
           pip list
@@ -567,11 +572,7 @@ jobs:
     runs-on: linux-aarch64-a3-16
     timeout-minutes: 180 # Increase this timeout value as needed
     container:
-<<<<<<< HEAD
-      image: swr.ap-southeast-1.myhuaweicloud.com/base_image/ascend-ci/verl/verl:verl-9.0.0-a3-ubuntu22.04-py3.11-latest
-=======
       image: swr.ap-southeast-1.myhuaweicloud.com/base_image/ascend-ci/verl/verl:latest-vllm-a3-ubuntu
->>>>>>> 8a1bf6d5b080173e29834aca55ee8d47549b2ea6
       options: >-
         --shm-size 60g
     env:
@@ -591,30 +592,20 @@ jobs:
         run: |
           cat /usr/local/Ascend/ascend-toolkit/latest/"$(uname -i)"-linux/ascend_toolkit_install.info
           npu-smi info
-<<<<<<< HEAD
-=======
       - name: Checkout verl-project/verl repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           clean: true
->>>>>>> 8a1bf6d5b080173e29834aca55ee8d47549b2ea6
       - name: Install uv
         run: pip install uv
       - name: Install the current repository
         run: |
-<<<<<<< HEAD
-          uv pip install -r requirements-npu.txt && uv pip install -v -e .
-          uv pip install veomni==0.1.11 --ignore-requires-python --no-deps --index-url https://pypi.org/simple/
-=======
           uv pip install -v -e .
->>>>>>> 8a1bf6d5b080173e29834aca55ee8d47549b2ea6
           uv pip install transformers==5.3.0
       - name: Check initial pip list from image
         run: |
           uv pip list
-<<<<<<< HEAD
-=======
       - name: Prepare weights
         run: |
           ln -s /root/.cache/models ~/models
@@ -646,34 +637,28 @@ jobs:
       - name: Check initial pip list from image
         run: |
           pip list
->>>>>>> 8a1bf6d5b080173e29834aca55ee8d47549b2ea6
       - name: Checkout verl-project/verl repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           clean: true
-<<<<<<< HEAD
-=======
       - name: Check final pip list
         run: |
           pip list
->>>>>>> 8a1bf6d5b080173e29834aca55ee8d47549b2ea6
       - name: Prepare weights
         run: |
           ln -s /root/.cache/models ~/models
       - name: Prepare GSM8K dataset
         run: |
           python examples/data_preprocess/gsm8k.py --local_dataset_path ${HOME}/.cache/datasets/openai/gsm8k
-<<<<<<< HEAD
-      - name: Running nightlyCI_grpo-qwen3-30b-veomni-fsdp_ascend
-        run: |
-          ray stop --force
-          bash tests/special_npu/nightly_ci_ascend/run_grpo_qwen3_30b_veomni_fsdp.sh
-=======
       - name: Running nightlyCI_grpo-qwen3-8b-fsdp2-vllm_ascend
         run: |
           ray stop --force
           bash tests/special_npu/nightly_ci_ascend/run_gspo_qwen3_8b_fsdp2_npu.sh
+      - name: Running nightlyCI_grpo-qwen3-8b-fsdp2-vllm_ascend checking script
+        run: |
+          cd /root/.cache/nightly_log/
+          python check_npu.py --log run_gspo_qwen3_8b_fsdp2_npu/run_gspo_qwen3_8b_fsdp2_npu.log --base run_gspo_qwen3_8b_fsdp2_npu/baseline_gspo_qwen3_8b_fsdp2_npu.txt
 
   # Test grpo qwen33.5-35b megatron vllm
   # nightlyCI_grpo-qwen3_5-35b-megatron-vllm_ascend:
@@ -720,4 +705,3 @@ jobs:
   #         ray stop --force
   #         export PYTHONPATH=/Megatron-Bridge/src:$PYTHONPATH
   #         bash tests/special_npu/nightly_ci_ascend/run_grpo_qwen3_5_35b_megatron_npu.sh
->>>>>>> 8a1bf6d5b080173e29834aca55ee8d47549b2ea6
