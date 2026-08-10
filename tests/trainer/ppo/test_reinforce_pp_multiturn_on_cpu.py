@@ -48,7 +48,9 @@ class TestReinforcePPMultiTurn:
         expanded_rewards = torch.tensor([[0.0, 0.0, 0.0, 0.0, 0.0, 1.0]])
 
         _, compact_returns = compute_reinforce_plus_plus_outcome_advantage(compact_rewards, compact_mask, config=config)
-        _, expanded_returns = compute_reinforce_plus_plus_outcome_advantage(expanded_rewards, expanded_mask, config=config)
+        _, expanded_returns = compute_reinforce_plus_plus_outcome_advantage(
+            expanded_rewards, expanded_mask, config=config
+        )
 
         # Valid-token returns should match
         compact_valid = compact_returns[compact_mask.bool()]
